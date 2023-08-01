@@ -1,0 +1,28 @@
+# Node.js and NPM specific files
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# Environment files (store sensitive information)
+.env
+.env.local
+.env.*.local
+
+# Build and production files
+build/
+dist/
+*.log
+.DS_Store
+
+# IDE and editor specific files
+.idea/
+.vscode/
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Dependency lock files
+package-lock.json
+yarn.lock
