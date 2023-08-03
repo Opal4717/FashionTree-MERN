@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Mynavbar from './components/Mynavbar';
-import Card from './components/Card';
+import Home from './components/Home';
+import Product from './components/Product';
 // import Home from './components/Home';
+
 function App() {
   return (
     <>
@@ -11,11 +13,11 @@ function App() {
         </div>
         <div>
           <Routes>
-            <Route exact path="/" element={<Card />} />
+            <Route path="/" element={<Home />} />
           </Routes>
-          {/* <Routes>
-            <Route path="/home" element={<Home />} />
-          </Routes> */}
+          <Routes>
+            <Route path="/product" element={<Product />} />
+          </Routes>
         </div>
       </Router>
     </>
