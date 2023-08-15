@@ -1,6 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Loading from './Loading';
+import Alert from './Alert';
 // import './custom.css';
 
 const reducer = (state, action) => {
@@ -29,56 +31,61 @@ const Home = () => {
       try {
         const result = await axios.get('/api/products');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
-      } catch {
-        dispatch({ type: 'FETCH_FAIL', payload: error.message });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
       // setProducts(result.data);
     };
     fetchData();
-  }, [error.message]);
+  }, []);
 
   return loading ? (
-    <div>Loading...</div>
+    <Loading />
   ) : error ? (
-    <div>{error}</div>
+    <Alert error={error} />
   ) : (
-    <Link to="/product">
+    <>
+      <main className="rounded bg-primary border border-info">
+        <h2 className="font-italic">Product List</h2>
+      </main>
       <div
         className="d-flex justify-content-center align-items-center"
         styles="height: 100vh;"
       >
         <div>
           {products.map((product) => (
-            <div
+            <Link
+              to={`/product/${product.slug}`}
               key={product.slug}
-              className="justify-content-center align-items-center m-5
-          card bg-danger border-dark"
-              styles="width: 18rem;"
+              className="text-decoration-none "
             >
-              <img
-                className="justify-content-center align-items-center "
-                src={product.image}
-                //   className=""
-                alt={product.slug}
-              />
-              <div class="card-body">
-                <h5 class="card-title">{product.name}</h5>
-                <h4 class="card-title">
-                  <strong>${product.price}</strong>
-                </h4>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="/" class="btn btn-primary">
-                  Add to Cart
-                </a>
+              <div
+                className="justify-content-center align-items-center m-5
+              card bg-light rounded-4 border-100p border-info"
+                styles="width: 18rem;"
+              >
+                <img
+                  className="justify-content-center align-items-center "
+                  src={product.image}
+                  //   className=""
+                  alt={product.slug}
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{product.name}</h5>
+                  <h4 class="card-title">
+                    <strong className="text-warning">${product.price}</strong>
+                  </h4>
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
-    </Link>
+    </>
   );
 };
 
