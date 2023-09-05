@@ -11,7 +11,7 @@ const Mynavbar = () => {
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <Link to="/" className="navbar-brand">
-              Crossword
+              <b className="text-primary">FashionTree</b>
             </Link>
             <button
               className="navbar-toggler"
@@ -65,7 +65,7 @@ const Mynavbar = () => {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn btn-outline-success" type="submit">
+                <button className="btn btn-outline-info" type="submit">
                   Search
                 </button>
               </form>

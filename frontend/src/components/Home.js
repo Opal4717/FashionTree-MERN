@@ -46,7 +46,7 @@ const Home = () => {
   ) : (
     <>
       <main className="rounded bg-primary border border-info">
-        <h2 className="font-italic">Product List</h2>
+        <h4 className="">Product List</h4>
       </main>
       <div
         className="d-flex justify-content-center align-items-center"
